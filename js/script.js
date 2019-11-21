@@ -30,26 +30,33 @@ document.querySelector('#gameboard').addEventListener('click', handleClick);
 document.querySelector('#reset').addEventListener('click', init);
 // Define Processes
 // Functions
-init(); 
+init();
+ 
 function init() {
     winner = false; 
     turn = 1;
     gameboard = [null, null, null, null, null, null, null, null, null];
+    render();
 }
 function handleClick(evt) {
     console.log(evt.target.dataset.index)
     const selectedIndex = parseInt(evt.target.dataset.index);
-    gameboard[selectedIndex] = turn;
-    turn *= -1
+    if(gameboard[selectedIndex] !== null) return;
+
+      gameboard[selectedIndex] = turn;
+      turn *= -1
     
     render(evt);
 
-    console.log(turn)
-    console.log(gameboard)
+    // console.log(turn)
+    // console.log(gameboard)
 }
 
 function render(evt){
   gameboard.forEach( (elem, index) => {
+    // message.textContent = "Let's Play! X is ALWAYS first!"
       squares[index].textContent = KEY[elem]
-  }); 
+      message.textContent = `${KEY[turn]}'s turn!`;
+      console.log()
+    }); 
 }
