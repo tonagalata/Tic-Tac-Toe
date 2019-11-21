@@ -41,15 +41,15 @@ function handleClick(evt) {
     const selectedIndex = parseInt(evt.target.dataset.index);
     gameboard[selectedIndex] = turn;
     turn *= -1
-
-    if(turn === 1){
-      evt.target.dataset.index = "X"
-      message.textContent = "X's turn"
-    } else {
-      message.textContent = "O's turn"
-      evt.target.dataset.index = "O"
-    }
     
+    render(evt);
+
     console.log(turn)
     console.log(gameboard)
+}
+
+function render(evt){
+  gameboard.forEach( (elem, index) => {
+      squares[index].textContent = KEY[elem]
+  }); 
 }
